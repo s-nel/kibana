@@ -27,6 +27,7 @@ import { euiStyled } from '../../../../../../../../../../../src/plugins/kibana_r
 import { Span } from '../../../../../../../../typings/es_schemas/ui/span';
 import { Transaction } from '../../../../../../../../typings/es_schemas/ui/transaction';
 import { DiscoverSpanLink } from '../../../../../../shared/Links/DiscoverLinks/DiscoverSpanLink';
+import { CodeSpanLink } from '../../../../../../shared/Links/CodeLinks/CodeSpanLink';
 import { SpanMetadata } from '../../../../../../shared/MetadataTable/SpanMetadata';
 import { Stacktrace } from '../../../../../../shared/Stacktrace';
 import { Summary } from '../../../../../../shared/Summary';
@@ -135,6 +136,18 @@ export function SpanFlyout({
                   )}
                 </EuiButtonEmpty>
               </DiscoverSpanLink>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <CodeSpanLink span={span}>
+                <EuiButtonEmpty iconType="codeApp">
+                  {i18n.translate(
+                    'xpack.apm.transactionDetails.spanFlyout.viewCodeButtonLabel',
+                    {
+                      defaultMessage: 'View Code',
+                    }
+                  )}
+                </EuiButtonEmpty>
+              </CodeSpanLink>
             </EuiFlexItem>
           </EuiFlexGroup>
           {span.span.composite && (

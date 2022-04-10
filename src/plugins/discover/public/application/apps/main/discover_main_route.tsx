@@ -22,6 +22,7 @@ import { redirectWhenMissing } from '../../../../../kibana_utils/public';
 import { DataViewSavedObjectConflictError } from '../../../../../data_views/common';
 import { getUrlTracker } from '../../../kibana_services';
 import { LoadingIndicator } from '../../components/common/loading_indicator';
+import { RedirectAppLinks } from '../../../../../../plugins/kibana_react/public';
 
 const DiscoverMainAppMemoized = memo(DiscoverMainApp);
 
@@ -174,11 +175,13 @@ export function DiscoverMainRoute({ services, history }: DiscoverMainProps) {
   }
 
   return (
-    <DiscoverMainAppMemoized
-      history={history}
-      indexPatternList={indexPatternList}
-      savedSearch={savedSearch}
-      services={services}
-    />
+    <RedirectAppLinks application={core.application}>
+      <DiscoverMainAppMemoized
+        history={history}
+        indexPatternList={indexPatternList}
+        savedSearch={savedSearch}
+        services={services}
+      />
+    </RedirectAppLinks>
   );
 }
